@@ -1,0 +1,295 @@
+---
+layout: post
+title:  "hello three.js!"
+date:   2015-02-10 15:14:54
+categories: threejs
+tags: threejs
+excerpt: 当年创建 jekyll 时默认的一篇文章，没什么意义，我也一直没删除，留个纪念吧。
+mathjax: true
+---
+
+开场白
+webGL可以让我们在canvas上实现3D效果。而three.js是一款webGL框架，由于其易用性被广泛应用。如果你要学习webGL，抛弃那些复杂的原生接口从这款框架入手是一个不错的选择。
+
+博主目前也在学习three.js，发现相关资料非常稀少，甚至官方的api文档也非常粗糙，很多效果需要自己慢慢敲代码摸索。所以我写这个教程的目的一是自己总结，二是与大家分享。
+
+本篇是系列教程的第一篇：入门篇。在这篇文章中，我将以一个简单的demo为例，阐述three.js的基本配置方法。学完这篇文章，你将学会如何在浏览器中绘制一个立体图形！
+
+准备工作
+
+在写代码之前，你首先要去下最新的three.js框架包，在你的页面里引入three.js，当然文件包里面也有不少的demo便于大家学习；
+
+chrome是目前支持webGL最好的浏览器，Firefow居其次，国内的遨游、猎豹经测试也可以运行。
+
+从实例开始入门!
+
+首先我们搭建html，如下：
+
+复制代码
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>lesson1-by-shawn.xie</title>
+        <!--引入Three.js-->
+        <script src="Three.js"></script>
+        <style type="text/css">
+            div#canvas-frame{
+                  border: none;
+                  cursor: move;
+                  width: 1400px;
+                  height: 600px;
+                  background-color: #EEEEEE;
+                }
+        </style>
+    </head>
+
+    <body>
+        <!--盛放canvas的容器-->
+        <div id="container"></div>
+    </body>
+</html>
+复制代码
+准备和画布框大小一致的领域用于WebGL绘制。 具体来说：
+
+(1) body 标签中添加 id 为「canvas3d」的 div 元素。
+
+(2) style 标签中指定 「canvas3d」的CSS样式。
+
+需要注意的是，我们并不需要写一个<canvas>标签，我们只需要定义好盛放canvas的div就可以，canvas是three.js动态生成的！
+
+下面我们开始写脚本，我们将通过以下五步构建一个简单的立体模型，这也是three.js的基本步骤：
+
+1.设置three.js渲染器
+
+三维空间里的物体映射到二维平面的过程被称为三维渲染。 一般来说我们都把进行渲染操作的软件叫做渲染器。 具体来说要进行下面这些处理。
+
+(0) 声明全局变量（对象）；
+
+(1) 获取画布「canvas-frame」的高宽；
+
+(2) 生成渲染器对象（属性：抗锯齿效果为设置有效）；
+
+(3) 指定渲染器的高宽（和画布框大小一致）；
+
+(4) 追加 【canvas】 元素到 【canvas3d】 元素中；
+
+(5) 设置渲染器的清除色(clearColor)。
+
+
+
+复制代码
+//开启Three.js渲染器
+var renderer;//声明全局变量（对象）
+function initThree() {
+   width = document.getElementById('canvas3d').clientWidth;//获取画布「canvas3d」的宽
+   height = document.getElementById('canvas3d').clientHeight;//获取画布「canvas3d」的高
+   renderer=new THREE.WebGLRenderer({antialias:true});//生成渲染器对象（属性：抗锯齿效果为设置有效）
+   renderer.setSize(width, height );//指定渲染器的高宽（和画布框大小一致）
+   document.getElementById('canvas3d').appendChild(renderer.domElement);//追加 【canvas】 元素到 【canvas3d】 元素中。
+   renderer.setClearColorHex(0xFFFFFF, 1.0);//设置canvas背景色(clearColor)
+}
+复制代码
+
+
+2.设置摄像机camera
+
+OpenGL（WebGL）中、三维空间中的物体投影到二维空间的方式中，存在透视投影和正投影两种相机。 透视投影就是、从视点开始越近的物体越大、远处的物体绘制的较小的一种方式、和日常生活中我们看物体的方式是一致的。 正投影就是不管物体和视点距离，都按照统一的大小进行绘制、在建筑和设计等领域需要从各个角度来绘制物体，因此这种投影被广泛应用。在 Three.js 也能够指定透视投影和正投影两种方式的相机。 本文按照以下的步骤设置透视投影方式。
+
+(0) 声明全局的变量（对象）；
+
+(1) 设置透视投影的相机；
+
+(2) 设置相机的位置坐标；
+
+(3) 设置相机的上为「z」轴方向；
+
+(4) 设置视野的中心坐标。
+
+复制代码
+ 　　　　　　　 //设置相机
+              var camera;
+              function initCamera() {
+                camera = new THREE.PerspectiveCamera( 45, width / height , 1 , 5000 );//设置透视投影的相机,默认情况下相机的上方向为Y轴，右方向为X轴，沿着Z轴朝里（视野角：fov 纵横比：aspect 相机离视体积最近的距离：near 相机离视体积最远的距离：far）
+                camera.position.x = 0;//设置相机的位置坐标
+                camera.position.y = 50;//设置相机的位置坐标
+                camera.position.z = 100;//设置相机的位置坐标
+                camera.up.x = 0;//设置相机的上为「x」轴方向
+                camera.up.y = 1;//设置相机的上为「y」轴方向
+                camera.up.z = 0;//设置相机的上为「z」轴方向
+                camera.lookAt( {x:0, y:0, z:0 } );//设置视野的中心坐标
+              }
+复制代码
+
+
+3.设置场景scene
+
+场景就是一个三维空间。 用 [Scene] 类声明一个叫 [scene] 的对象。
+
+　　　　　　　　//设置场景
+              var scene;
+              function initScene() {
+                scene = new THREE.Scene();
+              }
+
+
+4.设置光源light
+
+OpenGL（WebGL）的三维空间中，存在点光源和聚光灯两种类型。 而且，作为点光源的一种特例还存在平行光源(无线远光源)。另外，作为光源的参数还可以进行 [环境光] 等设置。 作为对应， Three.js中可以设置 [点光源(Point Light)] [聚光灯(Spot Light)] [平行光源(Direction Light)]，和 [环境光(Ambient Light)]。 和OpenGL一样、在一个场景中可以设置多个光源。 基本上，都是环境光和其他几种光源进行组合。 如果不设置环境光，那么光线照射不到的面会变得过于黑暗。 本文中首先按照下面的步骤设置平行光源，在这之后还会追加环境光。
+
+(0) 声明全局变量(对象)
+
+(1) 设置平行光源
+
+(2) 设置光源向量
+
+(3) 追加光源到场景
+
+这里我们用「DirectionalLight」类声明一个叫 [light] 的对象来代表平行光源
+
+复制代码
+ 　　　　　　　　//设置光源
+              var light;
+              function initLight() {
+                light = new THREE.DirectionalLight(0xff0000, 1.0, 0);//设置平行光源
+                light.position.set( 200, 200, 200 );//设置光源向量
+                scene.add(light);// 追加光源到场景
+              }
+复制代码
+
+
+5.设置物体object
+
+   这里，我们声明一个球模型
+
+复制代码
+ 　　　　　　　　//设置物体
+              var sphere;
+              function initObject(){
+                sphere = new THREE.Mesh(
+                     new THREE.SphereGeometry(20,20),                //width,height,depth
+                     new THREE.MeshLambertMaterial({color: 0xff0000}) //材质设定
+                );
+                scene.add(sphere);
+                sphere.position.set(0,0,0);
+              }
+复制代码
+最后，我们写一个主函数执行以上五步：
+
+复制代码
+　　　　　　　　//执行
+              function threeStart() {
+                initThree();
+                initCamera();
+                initScene();
+                initLight();
+                initObject();
+                renderer.clear();
+                renderer.render(scene, camera);
+              }
+复制代码
+这时，测试以上程序，你会发现浏览器窗口中出现了你绘制的球形模型：
+
+
+
+总结
+
+以上就是three.js的入门内容，我们核心的五步就是：
+
+1.设置three.js渲染器
+
+2.设置摄像机camera
+
+3.设置场景scene
+
+4.设置光源light
+
+5.设置物体object
+
+可能其中有些设置你还不太清楚，没关系，后面几篇文章会对以上五个主要步骤进行详细的讲解，敬请期待~~
+
+
+本例完整代码：
+
+复制代码
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>lesson1-by-shawn.xie</title>
+        <!--引入Three.js-->
+        <script src="Three.js"></script>
+        <script type="text/javascript">
+            //开启Three.js渲染器
+             var renderer;//声明全局变量（对象）
+             function initThree() {
+                width = document.getElementById('canvas3d').clientWidth;//获取画布「canvas3d」的宽
+                height = document.getElementById('canvas3d').clientHeight;//获取画布「canvas3d」的高
+                renderer=new THREE.WebGLRenderer({antialias:true});//生成渲染器对象（属性：抗锯齿效果为设置有效）
+                renderer.setSize(width, height );//指定渲染器的高宽（和画布框大小一致）
+                document.getElementById('canvas3d').appendChild(renderer.domElement);//追加 【canvas】 元素到 【canvas3d】 元素中。
+                renderer.setClearColorHex(0xFFFFFF, 1.0);//设置canvas背景色(clearColor)
+              }
+               //设置相机
+              var camera;
+              function initCamera() {
+                camera = new THREE.PerspectiveCamera( 45, width / height , 1 , 5000 );//设置透视投影的相机,默认情况下相机的上方向为Y轴，右方向为X轴，沿着Z轴朝里（视野角：fov 纵横比：aspect 相机离视体积最近的距离：near 相机离视体积最远的距离：far）
+                camera.position.x = 0;//设置相机的位置坐标
+                camera.position.y = 50;//设置相机的位置坐标
+                camera.position.z = 100;//设置相机的位置坐标
+                camera.up.x = 0;//设置相机的上为「x」轴方向
+                camera.up.y = 1;//设置相机的上为「y」轴方向
+                camera.up.z = 0;//设置相机的上为「z」轴方向
+                camera.lookAt( {x:0, y:0, z:0 } );//设置视野的中心坐标
+              }
+               //设置场景
+              var scene;
+              function initScene() {
+                scene = new THREE.Scene();
+              }
+
+              //设置光源
+              var light;
+              function initLight() {
+                light = new THREE.DirectionalLight(0xff0000, 1.0, 0);//设置平行光源
+                light.position.set( 200, 200, 200 );//设置光源向量
+                scene.add(light);// 追加光源到场景
+              }
+               //设置物体
+              var sphere;
+              function initObject(){
+                sphere = new THREE.Mesh(
+                     new THREE.SphereGeometry(20,20),                //width,height,depth
+                     new THREE.MeshLambertMaterial({color: 0xff0000}) //材质设定
+                );
+                scene.add(sphere);
+                sphere.position.set(0,0,0);
+              }
+              //执行
+              function threeStart() {
+                initThree();
+                initCamera();
+                initScene();
+                initLight();
+                initObject();
+                renderer.clear();
+                renderer.render(scene, camera);
+              }
+        </script>
+        <style type="text/css">
+            div#canvas3d{
+                  border: none;
+                  cursor: move;
+                  width: 1400px;
+                  height: 600px;
+                  background-color: #EEEEEE;
+                }
+        </style>
+    </head>
+
+    <body onload='threeStart();'>
+        <!--盛放canvas的容器-->
+        <div id="canvas3d"></div>
+    </body>
+
+
