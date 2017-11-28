@@ -11,7 +11,7 @@ type: page
 
 ## 关于我
 
-<img src="https://avatars2.githubusercontent.com/u/23630345?s=460&v=4" style="height: 230px;width: 229px;"/>
+<img src="https://avatars2.githubusercontent.com/u/23630345?s=460&v=4" style="height: 230px;width: 229px;border-radius: 6px"/>
 
 现就职于苹果装饰，前端开发工程师，花名追风子。
 
