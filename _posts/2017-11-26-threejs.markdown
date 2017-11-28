@@ -4,9 +4,8 @@ title:  "three.js-入门第一篇"
 date:   2017-11-26 15:14:54
 categories: threejs
 tags: threejs
-excerpt: 听说three.js是一个web端的WebGL 3D库,能开发出不错的效。玩过纪念碑谷吧，其实它就是用three.js写的。是不是很有趣，那么Come on 学起来！
 author: YuKang
----
+excerpt: 听说three.js是一个web端的WebGL 3D库,能开发出不错的效。玩过纪念碑谷吧，其实它就是用three.js写的。是不是很有趣，那么Come on 学起来！---
 
 ## 开场白
 webGL可以让我们在canvas上实现3D效果。而three.js是一款webGL框架，由于其易用性被广泛应用。如果你要学习webGL，抛弃那些复杂的原生接口从这款框架入手是一个不错的选择。
@@ -193,16 +192,16 @@ function threeStart() {
 
 以上就是three.js的入门内容，我们核心的五步就是：
 
-#### 1.设置three.js渲染器
-#### 2.设置摄像机camera
-#### 3.设置场景scene
-#### 4.设置光源light
-#### 5.设置物体object
+### 1.设置three.js渲染器
+### 2.设置摄像机camera
+### 3.设置场景scene
+### 4.设置光源light
+### 5.设置物体object
 
 可能其中有些设置你还不太清楚，没关系，后面几篇文章会对以上五个主要步骤进行详细的讲解，敬请期待~~
 
 
-##### 本例完整代码：
+## 本例完整代码：
 
 ```
 <!DOCTYPE html>
