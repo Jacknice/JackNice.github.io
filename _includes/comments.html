@@ -1,22 +1,21 @@
-{% if site.duoshuo_shortname %}
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="{{ site.url }}{{ page.url }}" data-title="{{page.title}}" data-url="{{ site.url }}{{ page.url }}"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {
-        short_name: "{{site.duoshuo_shortname}}"
-    };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+{% if site.gitment_shortname %}
+<!--gitment评论框 start-->
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '页面 ID', // 可选。默认为 location.href
+        owner: "{{gitment_shortname}}",
+        repo: "{{repo}}",
+        oauth: {
+            client_id: "{{cliendt_ID}}",
+            client_secret: "{{client_secret}}",
+        },
+    })
+    gitment.render('container')
 </script>
-<!-- 多说公共JS代码 end -->
+<!--gitment评论框 end-->
 {% endif %}
 
 {% if site.disqus_shortname %}
