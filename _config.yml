@@ -14,9 +14,13 @@ url: "https://jacknice.github.io/" # the base hostname & protocol for your site
 permalink: /:year/:month/:day/:title/
 
 # other links
+twitter_username: 
+facebook_username: 
 github_username:  Jacknice
 email: 18790336164@163.com
-weibo_username: https://weibo.com/3908887522/profile?rightmod=1&wvr=6&mod=personinfo
+weibo_username: https://weibo.com/u/3908887522
+zhihu_username: 
+linkedIn_username: 
 dribbble_username:
 
 description_footer: 本站记录我前端之旅的沿途风景！
