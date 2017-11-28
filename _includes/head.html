@@ -13,7 +13,17 @@
     <link rel="stylesheet" href="{{ "/css/main.css " | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml " | prepend: site.baseurl | prepend: site.url }}">
-
+<script>
+        var gitment = new Gitment({
+            owner: '1172248038@qq.com',
+            repo: '存储评论的 repo',
+            oauth: {
+                client_id: 'cf9b1de3f6a7b2611ba5',
+                client_secret: 'c7033c121cb99b06b96a05245e1667cd4ce51a35',
+            },
+        })
+        gitment.render('container')
+    </script>
 {% if site.baidu_tongji_id %}
     <script>
     // 百度统计代码
