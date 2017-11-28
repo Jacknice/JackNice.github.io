@@ -14,13 +14,9 @@ url: "https://jacknice.github.io/" # the base hostname & protocol for your site
 permalink: /:year/:month/:day/:title/
 
 # other links
-twitter_username: gaohaoyang126
-facebook_username: gaohaoyang.water
 github_username:  Jacknice
 email: 18790336164@163.com
-weibo_username: 滴答音乐
-zhihu_username: gaohaoyang
-linkedIn_username: gaohaoyang
+weibo_username: https://weibo.com/3908887522/profile?rightmod=1&wvr=6&mod=personinfo
 dribbble_username:
 
 description_footer: 本站记录我前端之旅的沿途风景！
