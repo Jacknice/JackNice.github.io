@@ -5,12 +5,12 @@
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        id: '页面 ID', // 可选。默认为 location.href
-        owner: '{{ gitment_shortname }}',
-        repo: '{{ repo }}',
+        id: '', // 可选。默认为 location.href
+        owner: '{{ site.gitment_shortname }}',
+        repo: '{{ site.repo }}',
         oauth: {
-            client_id: '{{ cliendt_ID }}',
-            client_secret: '{{ client_secret }}',
+            client_id: '{{ site.cliendt_ID }}',
+            client_secret: '{{ site.client_secret }}',
         },
     })
     gitment.render('container')
