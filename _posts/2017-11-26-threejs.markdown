@@ -65,7 +65,7 @@ document.body.appendChild( renderer.domElement );
 ```
 setSize(window.innerWidth/2, window.innerHeight/2, false)
 ```
-以上示例将会使你的应用将以原来的一半分辨率运行，假设你的<canvas>宽高设置为100%[备注，此处代码是为了分清楚，不要加入文件中执行].
+以上示例将会使你的应用将以原来的一半分辨率运行，假设你的<canvas>宽高设置为100%.
 
 最后，但并不止于此，当我们在HTML文档里添加渲染器元素的时候.我们使用的是<canvas>元素来进行渲染并展示出场景给我们.
     
