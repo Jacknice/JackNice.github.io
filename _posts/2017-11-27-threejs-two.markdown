@@ -1,3 +1,16 @@
+---
+layout: post
+title:  "three.js-第二篇（矩阵变换）"
+date:   2017-11-26 15:14:54
+categories: threejs
+tags: threejs
+excerpt: Three.js 利用矩阵编码描述3D转换--转换(位置),旋转和缩放.对于每一个基于Object3D的矩阵(matrix)实例对象都会存储一个位置，旋转和缩放.这篇文档主要描述如何更新一个对象的变换.
+author: YuKang
+---
+
+* content
+{:toc}
+
 Three.js 利用矩阵编码描述3D转换--转换(位置),旋转和缩放.对于每一个基于Object3D的矩阵(matrix)实例对象都会存储一个位置，旋转和缩放.这篇文档主要描述如何更新一个对象的变换.
 
 ### 便利性和矩阵的自动更新(matrixAutoUpdate)
