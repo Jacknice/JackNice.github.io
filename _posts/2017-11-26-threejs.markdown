@@ -61,13 +61,12 @@ document.body.appendChild( renderer.domElement );
 除了创建渲染实例，我们还需要设置大小在我们要使用的应用程序中。使用该区域的宽度和高度来填充我们的应用程序，这是一个好主意-在这种情况下，浏览器窗口的宽度和高度。性能密集型应用程序，您也可以给组量较小的值，如window.innerwidth/2和window.innerheight/2，这将使应用程序在一半大小的窗口下渲染。
 
 如果的应用程序运行在一个低分辨率的情况下，但是你想保持程序的视窗大小，你可以在调用setSize的时候并把updateStyle设置为false，例如：
+
 ```
 setSize(window.innerWidth/2, window.innerHeight/2, false)
 ```
 
 以上示例将会使你的应用将以原来的一半分辨率运行，假设你的<canvas>宽高设置为100%.
-
-最后，但并不止于此，当我们在HTML文档里添加渲染器元素的时候.我们使用的是<canvas>元素来进行渲染并展示出场景给我们.
     
 ```
 var geometry = new THREE.BoxGeometry( 1, 1, 1 );
