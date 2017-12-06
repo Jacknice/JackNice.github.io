@@ -18,6 +18,7 @@ author: YuKang
  
 过程： 
  
+
  ### 1. 下载，安装 FileZilla Server 0.9.60.2 
 ![](http://bbs.aliyun.com/attachment/Fid_239/239_1477160476054779_b8fa6ed3ab15632.png?22)
 ![](http://bbs.aliyun.com/attachment/Fid_239/239_1477160476054779_3c7c85055c863ac.png?19)
