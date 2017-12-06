@@ -4,7 +4,6 @@ title:  "js基础之函数"
 date:   2017-12-06 
 categories: javascript
 tags: javascript
-excerpt: javascript 前端这两年的新技术铺天盖地，各种框架、工具层出不穷眼花缭乱。最近打算好好复习下 js 基础，夯实的基础才是学习新技术的基石。本文作为读书笔记简单的总结下 js 函数的基础知识。
 author: YuKang
 ---
 
