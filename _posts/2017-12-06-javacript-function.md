@@ -2,8 +2,8 @@
 layout: post
 title:  "js基础之函数"
 date:   2017-12-06 
-categories: javascript
-tags: javascript
+categories: Javascript
+tags: Javascript
 author: YuKang
 ---
 
