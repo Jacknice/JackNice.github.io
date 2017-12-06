@@ -183,9 +183,9 @@ console.log(person instance Object) // true
 
 ES6 中的类还具有很多特性，这里不做展开，有兴趣的请自己查阅。
 
-### 属性
+## 属性
 
-#### length
+### length
 length 属性表示函数希望接收的命名参数的个数。如：
 
 ```
@@ -204,7 +204,7 @@ console.log(sum.length) // 2
 ```
 这里加入 不定参数 …rest 后，length 属性的值仍然是 2。
 
-#### name
+### name
 name 属性返回函数实例的名称。例如：
 ```
 function foo () {}
@@ -245,7 +245,7 @@ o[sym2].name; // ""
  ```
 切记，函数的 name 属性值不一定引用同名变量，它只是协助调试用的额外信息，所以不能使用 name 属性的值来获取对于函数的引用。
 
-#### prototype
+### prototype
 Function.prototype 属性存储了 Function 的原型对象。
 一般用来给 Function 实例添加公共方法和属性。
 
